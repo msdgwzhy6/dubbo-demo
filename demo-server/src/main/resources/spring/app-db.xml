@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-3.1.xsd
+          http://www.springframework.org/schema/aop
+          http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+
+
+          http://www.springframework.org/schema/data/jpa
+          http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <context:annotation-config />
+
+    <context:component-scan base-package="cn.com.egova.easyshare"/>
+  <!--  &lt;!&ndash;配置文件读取&ndash;&gt;
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:config.properties</value>
+            </list>
+        </property>
+
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="${db.driverClassName}"></property>
+        <property name="url" value="${db.url}"></property>
+        <property name="username" value="${db.username}"></property>
+        <property name="password" value="${db.password}"></property>
+        <property name="maxTotal" value="${db.maxTotal}"></property>
+        <property name="maxIdle" value="${db.maxIdle}"></property>
+    </bean>
+
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="false" />
+                <property name="database" value="ORACLE" />
+            </bean>
+        </property>
+        &lt;!&ndash; 指定Entity实体类包路径 &ndash;&gt;
+        <property name="packagesToScan">
+            <value>cn.com.egova.easyshare.common.entity</value>
+        </property>
+        &lt;!&ndash; 指定JPA属性；如Hibernate中指定是否显示SQL的是否显示、方言等 &ndash;&gt;
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle9iDialect</prop>
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">none</prop>
+            </props>
+        </property>
+    </bean>
+
+    &lt;!&ndash; 配置事务管理器 &ndash;&gt;
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    &lt;!&ndash; 启用 annotation事务&ndash;&gt;
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    &lt;!&ndash; 采用JdbcTemplate配置 &ndash;&gt;
+    <bean id="jdbcTemplate"  class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="lobHandler"  class="org.springframework.jdbc.support.lob.OracleLobHandler">
+    </bean>
+
+    &lt;!&ndash; 通过aop配置事务 &ndash;&gt;
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+	</bean>-->
+
+
+    <aop:aspectj-autoproxy/>
+    <!-- 配置Spring Data JPA扫描目录-->
+    <jpa:repositories base-package="cn.com.egova.easyshare.server.repository"/>
+</beans>
